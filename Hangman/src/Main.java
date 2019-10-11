@@ -9,7 +9,22 @@ public class Main {
     private static String newWord = "";
 
     public static void main (String[] args) {
-        runGame();
+        boolean shouldRun = true;
+        while (shouldRun) {
+            runGame();
+
+            // Play again?
+            System.out.println("\nPlay again?");
+            Scanner scanner = new Scanner(System.in);
+            String ans = scanner.next().toLowerCase();
+            while (!ans.matches("[yn]")) {
+                System.out.println("Please type 'y' or 'n'.");
+                ans = scanner.next().toLowerCase();
+            }
+            if (ans.equals("n")) {
+                shouldRun = false;
+            }
+        }
     }
 
     /**
@@ -95,17 +110,6 @@ public class Main {
             } else {
                 System.out.println("Sorry! Please input a valid letter.");
             }
-        }
-
-        // Play again?
-        System.out.println("Play again?");
-        String ans = scanner.next().toLowerCase();
-        while (!ans.matches("[a-z]")) {
-            System.out.println("Please type 'y' or 'n'.");
-            ans = scanner.next().toLowerCase();
-        }
-        if (ans.equals("y")) {
-            runGame();
         }
     }
 
