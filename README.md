@@ -1,2 +1,2 @@
 # practice-projects
-Small practice projects for interviews.
+Small practice projects. 
