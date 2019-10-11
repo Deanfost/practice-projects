@@ -5,8 +5,6 @@ import java.util.*;
 public class Main {
     private static final String FILE_PATH = "src/words.txt";
     private static final int GUESS_COUNT = 6;
-    private static HashMap<Character, Tuple<Boolean, ArrayList<Integer>>> guessMap = new HashMap<>();
-    private static String newWord = "";
 
     public static void main (String[] args) {
         boolean shouldRun = true;
@@ -31,8 +29,8 @@ public class Main {
      * Main execution loop.
      */
     private static void runGame() {
-        // Clear the map
-        guessMap.clear();
+        HashMap<Character, Tuple<Boolean, ArrayList<Integer>>> guessMap = new HashMap<>();
+        String newWord = "";
 
         // Choose a new word from file
         try {
@@ -73,7 +71,7 @@ public class Main {
         boolean shouldRun = true;
         while (shouldRun) {
             // Collect and handle input
-            printGuessMap();
+            printGuessMap(newWord, guessMap);
             System.out.println("You have " + guessesLeft + " guesses left.");
             System.out.println("Take a guess!");
             String guess = scanner.next().toLowerCase();
@@ -116,7 +114,7 @@ public class Main {
     /**
      * Prints out the game's Guess Map.
      */
-    private static void printGuessMap() {
+    private static void printGuessMap(String newWord, HashMap<Character, Tuple<Boolean, ArrayList<Integer>>> guessMap) {
         Character[] mapArray = new Character[newWord.length()];
         for (Character key : guessMap.keySet()) {
             Tuple<Boolean, ArrayList<Integer>> characterInfo = guessMap.get(key);
